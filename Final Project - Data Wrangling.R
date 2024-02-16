@@ -15,7 +15,7 @@ school_scores_and_lang_df <- left_join(language_df, school_scores_df, by = "Stat
 school_scores_and_lang_df <- school_scores_and_lang_df %>% 
                                 filter(State.Name != "Puerto Rico") %>% 
                                 filter(TimeFrame == Year) %>% 
-                                select(-DataFormat, -LocationType, -Academic.Subjects.Arts.Music.Average.GPA,
+                                select(-DataFormat, -LocationType, -Year, -Academic.Subjects.Arts.Music.Average.GPA,
                                        -Academic.Subjects.Arts.Music.Average.Years, -Academic.Subjects.Mathematics.Average.GPA,
                                        -Academic.Subjects.Mathematics.Average.Years, -Academic.Subjects.Natural.Sciences.Average.GPA,
                                        -Academic.Subjects.Natural.Sciences.Average.Years, -Academic.Subjects.Social.Sciences.History.Average.GPA,
