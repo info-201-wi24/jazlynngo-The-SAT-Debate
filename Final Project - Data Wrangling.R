@@ -8,8 +8,12 @@ school_scores_df <- read.csv("school_scores 3.csv")
 language_df <- language_df %>%
                   filter(DataFormat == "Percent")
 
-#joined ddf
+#joined df
 school_scores_and_lang_df <- left_join(language_df, school_scores_df, by = "State.Name")
 
+#clean joined df
+school_scores_and_lang_df <- school_scores_and_lang_df %>% 
+                                filter(State.Name != "Puerto Rico") %>% 
+                                filter(TimeFrame == Year)
 
 
