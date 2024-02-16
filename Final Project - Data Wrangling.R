@@ -3,3 +3,5 @@ language <- read.csv("Children who speak a language other than English at home.c
 school_scores <- read.csv("school_scores 3.csv")
 
 joined <- left_join(language, school_scores, by = "State.Name")
+
+new_variable <- "x"
