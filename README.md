@@ -1,4 +1,4 @@
-# Title of Your Final Project Here 
+# The SAT Debate
 ## INFO 201 "Foundational Skills for Data Science"
 
 Authors: Your names here
