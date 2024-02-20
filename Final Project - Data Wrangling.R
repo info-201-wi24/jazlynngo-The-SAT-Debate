@@ -13,11 +13,20 @@ language_df <- language_df %>%
 school_scores_and_lang_df <- left_join(language_df, school_scores_df, by = "State.Name")
 
 #Cleaning Joined DataFrame
-school_scores_and_lang_df <- school_scores_and_lang_df %>% 
+school_scores_and_lang_df_clean <- school_scores_and_lang_df %>% 
                                 filter(State.Name != "Puerto Rico") %>% 
-                                filter(TimeFrame == Year)
-                                # TO DO: select columns that we want 
-                                
+                                filter(TimeFrame == Year) %>% 
+                                select(State.Name, English.Speaker, Year, State.Code, Total.Math,
+                                       Total.Test.takers, Total.Verbal, Academic.Subjects.English.Average.GPA, Academic.Subjects.English.Average.Years,
+                                       Academic.Subjects.Foreign.Languages.Average.GPA, Academic.Subjects.Foreign.Languages.Average.Years,
+                                       Academic.Subjects.Mathematics.Average.GPA, Academic.Subjects.Mathematics.Average.Years, Family.Income.Between.20.40k.Math,
+                                       Family.Income.Between.20.40k.Test.takers, Family.Income.Between.20.40k.Verbal,
+                                       Family.Income.Between.40.60k.Math, Family.Income.Between.40.60k.Test.takers, Family.Income.Between.40.60k.Verbal, Family.Income.Between.60.80k.Math, Family.Income.Between.60.80k.Test.takers, 
+                                       Family.Income.Between.60.80k.Verbal, Family.Income.Between.80.100k.Math, Family.Income.Between.80.100k.Test.takers, Family.Income.Between.80.100k.Verbal,  # <-- Missing comma here
+                                       Family.Income.Less.than.20k.Math, Family.Income.Less.than.20k.Test.takers,
+                                       Family.Income.Less.than.20k.Verbal, Family.Income.More.than.100k.Math, Family.Income.More.than.100k.Test.takers, Family.Income.More.than.100k.Verbal, Gender.Female.Test.takers,
+                                       Gender.Male.Test.takers, Gender.Female.Math, Gender.Male.Math, Gender.Female.Verbal, Gender.Male.Verbal)
+
 #NEW CATEGORICAL VARIABLE
 state_region_lookup <- data.frame(
   State.Code = c("HI", "AK", "WA", "OR", "CA", "ID", "MT", "WY", "NV", "UT", "CO", "AZ", "NM", 
@@ -29,7 +38,7 @@ state_region_lookup <- data.frame(
              "South", "South", "South", "South", "South", "South", "South", "South", "South", "South", "South", "South", "South", "South", "South", "South",
              "Northeast", "Northeast", "Northeast", "Northeast", "Northeast", "Northeast", "Northeast", "Northeast", "Northeast"))
 
-school_scores_and_lang_df <- left_join(school_scores_and_lang_df, state_region_lookup, by = "State.Code")
+school_scores_and_lang_df <- left_join(school_scores_and_lang_df_clean, state_region_lookup, by = "State.Code")
 
 #NEW CONTINUOUS/NUMERICAL VARIABLE
 # setup
@@ -58,3 +67,4 @@ state_averages_df <- school_scores_and_lang_df %>%
     Average_Verbal = mean(Total.Verbal, na.rm = TRUE),
     Average_Extra_Lang_Perc = mean (as.numeric((English.Speaker), na.rm = TRUE) * 100)
   )
+
