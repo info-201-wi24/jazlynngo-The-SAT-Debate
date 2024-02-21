@@ -1,7 +1,7 @@
 # The SAT Debate
 ## INFO 201 "Foundational Skills for Data Science"
 
-Authors: Your names here
+Authors: Jazlyn Ngo, Arwa Iqbal, Tiffany Nguyen, Justin Nguyen
 
 
 For the Final Project -- Data Wrangling, add the following to this code repository:
