@@ -1,4 +1,8 @@
+library(ggplot2)
+library(plotly)
+library(bslib)
 
+sat_df <- read.csv("school_scores_and_lang_df.csv")
 
 ## OVERVIEW TAB INFO
 
@@ -34,11 +38,11 @@ viz_2_sidebar <- sidebarPanel(
 )
 
 viz_2_main_panel <- mainPanel(
-  h2("Vizualization 2 Title"),
+  h2("Impact of Wealth on SAT Scores"),
   # plotlyOutput(outputId = "your_viz_1_output_id")
 )
 
-viz_2_tab <- tabPanel("Viz 2 tab title",
+viz_2_tab <- tabPanel("Wealth",
   sidebarLayout(
     viz_2_sidebar,
     viz_2_main_panel
