@@ -14,16 +14,19 @@ overview_tab <- tabPanel("Overview Tab Title",
 ## VIZ 1 TAB INFO
 
 viz_1_sidebar <- sidebarPanel(
-  h2("Options for graph"),
-  #TODO: Put inputs for modifying graph here
+  h2("Select SAT Category"),
+  selectInput("scoreType", "Select SAT Score Type:", 
+              choices = c("Math" = "Total.Math", 
+                          "Verbal" = "Total.Verbal", 
+                          "Total" = "Total.Test.takers"))
 )
 
 viz_1_main_panel <- mainPanel(
-  h2("Vizualization 1 Title"),
-  # plotlyOutput(outputId = "your_viz_1_output_id")
+  h2("SAT Scores vs Extra Language Speaker Percent"),
+  plotlyOutput(outputId = "scoreVsEnglishPlot")
 )
 
-viz_1_tab <- tabPanel("Viz 1 tab title",
+viz_1_tab <- tabPanel("How does percentage of extra language speakers affect SAT scores?",
   sidebarLayout(
     viz_1_sidebar,
     viz_1_main_panel

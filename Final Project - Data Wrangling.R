@@ -1,8 +1,9 @@
 library(dplyr)
+getwd()
 
 #DataFrames
-language_df <- read.csv("Children who speak a language other than English at home.csv")
-school_scores_df <- read.csv("school_scores 3.csv")
+language_df <- read.csv("C:/Users/figne/OneDrive/Documents/Children who speak a language other than English at home.csv")
+school_scores_df <- read.csv("C:/Users/figne/OneDrive/Documents/school_scores 3.csv")
 
 #Joining DataFrames
 # cleaning language dataframe
