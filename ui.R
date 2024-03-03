@@ -39,7 +39,7 @@ viz_2_sidebar <- sidebarPanel(
 
 viz_2_main_panel <- mainPanel(
   h2("Impact of Wealth on SAT Scores"),
-  # plotlyOutput(outputId = "your_viz_1_output_id")
+  plotlyOutput(outputId = "")
 )
 
 viz_2_tab <- tabPanel("Wealth",
