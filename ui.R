@@ -103,7 +103,6 @@ viz_1_tab <- tabPanel("How does percentage of extra language speakers affect SAT
 
 viz_2_sidebar <- sidebarPanel(
   h2("Options for graph"),
-  #TODO: Put inputs for modifying graph here
 )
 
 viz_2_main_panel <- mainPanel(

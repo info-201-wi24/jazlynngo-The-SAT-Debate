@@ -24,7 +24,6 @@ server <- function(input, output){
   
   # 2nd Interactive Page
   
-  
   # 3rd Interactive Page
   output$scoreVsGenderPlotFemale <- renderPlotly({
     
