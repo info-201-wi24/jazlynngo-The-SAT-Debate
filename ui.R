@@ -53,23 +53,37 @@ viz_2_tab <- tabPanel("Wealth",
 )
 
 ## VIZ 3 TAB INFO
-
 viz_3_sidebar <- sidebarPanel(
-  h2("Options for graph"),
-  #TODO: Put inputs for modifying graph here
-)
+      h2("Select SAT score by Section"),
+      selectInput("scoreTypeFemale", "Select Female SAT Score Type:", 
+                  choices = c("Math" = "Gender.Female.Math", 
+                              "Verbal" = "Gender.Female.Verbal", 
+                              "Total" = "Gender.Female.Test.takers")),
+      selectInput("scoreTypeMale", "Select Male SAT Score Type:", 
+                  choices = c("Math" = "Gender.Male.Math", 
+                              "Verbal" = "Gender.Male.Verbal", 
+                              "Total" = "Gender.Male.Test.takers")),
+      selectInput("selectedState", "Select State:",
+                  choices = unique(sat_df$State.Name), multiple = TRUE)
+    )
 
 viz_3_main_panel <- mainPanel(
-  h2("Vizualization 3 Title"),
-  # plotlyOutput(outputId = "your_viz_1_output_id")
+  h2("SAT Score vs. Year for Female"),
+  plotlyOutput(outputId = "scoreVsGenderPlotFemale"),
+  
+  h2("SAT Score vs. Year for Male"),
+  plotlyOutput(outputId = "scoreVsGenderPlotMale")
 )
 
-viz_3_tab <- tabPanel("Viz 3 tab title",
-  sidebarLayout(
-    viz_3_sidebar,
-    viz_3_main_panel
-  )
+viz_3_tab <- tabPanel("How Does SAT Score Vary by Year for Female and Male",
+                      sidebarLayout(
+                        viz_3_sidebar,
+                        viz_3_main_panel
+                      )
 )
+
+
+
 
 ## CONCLUSIONS TAB INFO
 
