@@ -1,10 +1,44 @@
 library(ggplot2)
 library(plotly)
 library(bslib)
-
+<<<<<<< HEAD
+library(shiny)
+library(shinythemes)
 sat_df <- read.csv("school_scores_and_lang_df.csv")
+=======
+
+# more data wrangling for median household income
+sat_family_income_verbal_df <- sat_df %>%
+  select(State.Name, Year, starts_with("Family.Income") & ends_with(".Verbal")) %>% 
+  rename(
+    '0-20k.v' = 'Family.Income.Less.than.20k.Verbal',
+    '20-40k.v' = 'Family.Income.Between.20.40k.Verbal',
+    '40-60k.v' = 'Family.Income.Between.40.60k.Verbal',
+    '60-80k.v' = 'Family.Income.Between.60.80k.Verbal',
+    '80-100k.v' = 'Family.Income.Between.80.100k.Verbal',
+    '100k+.v' = 'Family.Income.More.than.100k.Verbal') %>% 
+  gather(key = "Family.Income.Verbal", value = "Sat.Verbal.Score", -State.Name, -Year) %>% 
+  mutate(Income.Level = Family.Income.Verbal, Score.Type = "Verbal", Score = Sat.Verbal.Score) %>% 
+  select(-Family.Income.Verbal, -Sat.Verbal.Score)
+
+sat_family_income_math_df <- sat_df %>%
+  select(State.Name, Year, starts_with("Family.Income") & ends_with(".Math")) %>% 
+  rename(
+    '0-20k.m' = 'Family.Income.Less.than.20k.Math',
+    '20-40k.m' = 'Family.Income.Between.20.40k.Math',
+    '40-60k.m' = 'Family.Income.Between.40.60k.Math',
+    '60-80k.m' = 'Family.Income.Between.60.80k.Math',
+    '80-100k.m' = 'Family.Income.Between.80.100k.Math',
+    '100k+.m' = 'Family.Income.More.than.100k.Math') %>%
+  gather(key = "Family.Income.Math", value = "Sat.Math.Score", -State.Name, -Year) %>% 
+  mutate(Income.Level = Family.Income.Math, Score.Type = "Math", Score = Sat.Math.Score) %>% 
+  select(-Family.Income.Math, -Sat.Math.Score)
+
+sat_family_income_df <- rbind(sat_family_income_verbal_df, sat_family_income_math_df)
+>>>>>>> c0441c0 (viz 2 finally done)
 
 ## OVERVIEW TAB INFO
+
 
 overview_tab <- tabPanel("Introduction",
      h1("The SAT Debate"),
@@ -98,15 +132,30 @@ viz_1_tab <- tabPanel("How does percentage of extra language speakers affect SAT
 )
 
 ## VIZ 2 TAB INFO
-
 viz_2_sidebar <- sidebarPanel(
-  h2("Options for graph"),
-  #TODO: Put inputs for modifying graph here
-)
+  selectInput("sat_type",
+              label = "Select a Score Type:",
+              choices = c("Verbal",
+                          "Math")
+))
 
 viz_2_main_panel <- mainPanel(
   h2("Impact of Wealth on SAT Scores"),
-  plotlyOutput(outputId = "")
+  plotlyOutput(outputId = "scoreVsFamilyIncomePlot"),
+  p("NOTE: 100k+ range should be at the end of the x-axis of plot."),
+  h1("Purpose"),
+  p("The purpose of this wealth plot is to show how SAT scores vary within 
+     different family income ranges and to see if the SAT test is really about 
+     a student's readiness for college or about wealth. We chose a scatter plot to
+     represent this data because it effectively visualizes the relationship between
+     the two continuous variables of SAT score and family income ranges."),
+  h1("Analysis"),
+  p("In our data, we can see that the lower the student's family income range is, 
+  the lower their SAT Score is. This is an important to note as income could be a factor
+  in how well a student scores on the SAT. This could give some insight and consideration
+  into universities for them to decide if the SAT is a good measure of a student or not. This
+  exposes the socioeconomic bias of the SAT, equity in admissions, aiming towards a more hollistic
+  review process, and giving more support for underserved students.")
 )
 
 viz_2_tab <- tabPanel("Wealth",
@@ -122,11 +171,11 @@ viz_3_sidebar <- sidebarPanel(
       selectInput("scoreTypeFemale", "Select Female SAT Score Type:", 
                   choices = c("Math" = "Gender.Female.Math", 
                               "Verbal" = "Gender.Female.Verbal", 
-                              "Total" = "Gender.Female.Test.takers")),
+                              "Total Test Takers" = "Gender.Female.Test.takers")),
       selectInput("scoreTypeMale", "Select Male SAT Score Type:", 
                   choices = c("Math" = "Gender.Male.Math", 
                               "Verbal" = "Gender.Male.Verbal", 
-                              "Total" = "Gender.Male.Test.takers")),
+                              "Total Test Takers" = "Gender.Male.Test.takers")),
       selectInput("selectedState", "Select State:",
                   choices = unique(sat_df$State.Name), multiple = TRUE)
     )
@@ -136,18 +185,29 @@ viz_3_main_panel <- mainPanel(
   plotlyOutput(outputId = "scoreVsGenderPlotFemale"),
   
   h2("SAT Score vs. Year for Male"),
-  plotlyOutput(outputId = "scoreVsGenderPlotMale")
+  plotlyOutput(outputId = "scoreVsGenderPlotMale"),
+  
+  h1("Purpose:"),
+    p("The purpose of these graphs is to document the variation in SAT scores based on gender, specifically male and female. 
+    Line plots were selected as they effectively illustrate whether the overall trend increases or decreases over time, 
+    spanning from 2005 to 2015. The inclusion of a state filter provides the opportunity to compare SAT scores across diverse
+    regions in the United States. Additionally, users can filter for math, verbal (reading and writing), or total SAT scores
+    to visualize how gender performance differences vary across specific sections of the exam."),
+  h1("Analysis:"),
+    p("The information demonstrates that males tend to perform better on all sections than females across the United States. Most states have an overall decline in score on the math section. Only a few states, some including Arkansas, Michigan Colorado, Wyoming, and Illinois have increased in the math section. In the verbal section, only some states, 
+    similar to the math section, have increased including Colorado, Michigan, and Wyoming. For all of the states, men performed 
+    higher than females in all sections, with the gap being slightly larger for math over verbal. Interestingly, the majority of states
+    had more female test takers then male. Finally, Indiana has almost remained constant in the math or verbal section, besides a sudden peak in 2010. Ironically, they had fewer test takers then. Overall, these data gives more insight, on how gender bias is present in SAT performance.")
+
+  
 )
 
-viz_3_tab <- tabPanel("How Does SAT Score Vary by Year for Female and Male",
+viz_3_tab <- tabPanel("Gender",
                       sidebarLayout(
                         viz_3_sidebar,
                         viz_3_main_panel
                       )
 )
-
-
-
 
 ## CONCLUSIONS TAB INFO
 
@@ -172,7 +232,12 @@ conclusion_tab <- tabPanel("Conclusion",
 
 
 
+<<<<<<< HEAD
 ui <- navbarPage("The SAT Debate",
+=======
+ui <- navbarPage("Example Project Title",
+  theme = shinytheme("cerulean"),
+>>>>>>> d7b58ea3b4aa7ed1c348f3942368032c6456da36
   overview_tab,
   viz_1_tab,
   viz_2_tab,
