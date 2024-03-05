@@ -1,9 +1,41 @@
 library(ggplot2)
 library(plotly)
 library(bslib)
+<<<<<<< HEAD
 library(shiny)
 library(shinythemes)
 sat_df <- read.csv("school_scores_and_lang_df.csv")
+=======
+
+# more data wrangling for median household income
+sat_family_income_verbal_df <- sat_df %>%
+  select(State.Name, Year, starts_with("Family.Income") & ends_with(".Verbal")) %>% 
+  rename(
+    '0-20k.v' = 'Family.Income.Less.than.20k.Verbal',
+    '20-40k.v' = 'Family.Income.Between.20.40k.Verbal',
+    '40-60k.v' = 'Family.Income.Between.40.60k.Verbal',
+    '60-80k.v' = 'Family.Income.Between.60.80k.Verbal',
+    '80-100k.v' = 'Family.Income.Between.80.100k.Verbal',
+    '100k+.v' = 'Family.Income.More.than.100k.Verbal') %>% 
+  gather(key = "Family.Income.Verbal", value = "Sat.Verbal.Score", -State.Name, -Year) %>% 
+  mutate(Income.Level = Family.Income.Verbal, Score.Type = "Verbal", Score = Sat.Verbal.Score) %>% 
+  select(-Family.Income.Verbal, -Sat.Verbal.Score)
+
+sat_family_income_math_df <- sat_df %>%
+  select(State.Name, Year, starts_with("Family.Income") & ends_with(".Math")) %>% 
+  rename(
+    '0-20k.m' = 'Family.Income.Less.than.20k.Math',
+    '20-40k.m' = 'Family.Income.Between.20.40k.Math',
+    '40-60k.m' = 'Family.Income.Between.40.60k.Math',
+    '60-80k.m' = 'Family.Income.Between.60.80k.Math',
+    '80-100k.m' = 'Family.Income.Between.80.100k.Math',
+    '100k+.m' = 'Family.Income.More.than.100k.Math') %>%
+  gather(key = "Family.Income.Math", value = "Sat.Math.Score", -State.Name, -Year) %>% 
+  mutate(Income.Level = Family.Income.Math, Score.Type = "Math", Score = Sat.Math.Score) %>% 
+  select(-Family.Income.Math, -Sat.Math.Score)
+
+sat_family_income_df <- rbind(sat_family_income_verbal_df, sat_family_income_math_df)
+>>>>>>> c0441c0 (viz 2 finally done)
 
 ## OVERVIEW TAB INFO
 
@@ -100,14 +132,30 @@ viz_1_tab <- tabPanel("How does percentage of extra language speakers affect SAT
 )
 
 ## VIZ 2 TAB INFO
-
 viz_2_sidebar <- sidebarPanel(
-  h2("Options for graph"),
-)
+  selectInput("sat_type",
+              label = "Select a Score Type:",
+              choices = c("Verbal",
+                          "Math")
+))
 
 viz_2_main_panel <- mainPanel(
   h2("Impact of Wealth on SAT Scores"),
-  plotlyOutput(outputId = "")
+  plotlyOutput(outputId = "scoreVsFamilyIncomePlot"),
+  p("NOTE: 100k+ range should be at the end of the x-axis of plot."),
+  h1("Purpose"),
+  p("The purpose of this wealth plot is to show how SAT scores vary within 
+     different family income ranges and to see if the SAT test is really about 
+     a student's readiness for college or about wealth. We chose a scatter plot to
+     represent this data because it effectively visualizes the relationship between
+     the two continuous variables of SAT score and family income ranges."),
+  h1("Analysis"),
+  p("In our data, we can see that the lower the student's family income range is, 
+  the lower their SAT Score is. This is an important to note as income could be a factor
+  in how well a student scores on the SAT. This could give some insight and consideration
+  into universities for them to decide if the SAT is a good measure of a student or not. This
+  exposes the socioeconomic bias of the SAT, equity in admissions, aiming towards a more hollistic
+  review process, and giving more support for underserved students.")
 )
 
 viz_2_tab <- tabPanel("Wealth",
@@ -160,9 +208,6 @@ viz_3_tab <- tabPanel("Gender",
                         viz_3_main_panel
                       )
 )
-
-
-
 
 ## CONCLUSIONS TAB INFO
 
