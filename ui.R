@@ -212,19 +212,25 @@ viz_3_tab <- tabPanel("Gender",
 ## CONCLUSIONS TAB INFO
 
 conclusion_tab <- tabPanel("Conclusion",
+ h1("Concluding The SAT Debate"),
+ img(src = "https://www.amideast.org/sites/default/files//SAT%20logo%20Resized-01_0.png"),
  p("Upon concluding our research, it is evident that the SAT is not simply a test of academic proficiency, 
     but also a reflection of external factors in students’ lives. Our exploration of data specifically on household income, 
     gender, and students who speak a language other than English at home reveals correlation to average SAT scores that imply 
     a broader context underlying test outcomes. "),
+ h3("Takeaway #1"),
  p("Firstly, our analysis of household income reveals an association between lower household income and diminished SAT performance. 
    This correlation highlights the impact of economic circumstances on a student's test-taking abilities as well as the role of 
    financial resources in academic achievement. "),
+ h3("Takeaway #2"),
  p("Next, our investigations explore the number of students who speak a language other than English at home. It exposed a notable
    trend whereas individuals speaking other languages at home tend to score less favorably on the SAT, particularly in the verbal 
    section. This observation suggests a language barrier, underscoring the challenges faced by non-native English speakers when navigating an English test. "),
+ h3("Takeaway #3"),
  p("Lastly, our examination of gender disparities in SAT scores reveals male students outperforming female students across various 
  states despite a higher participation rate among females. This underscores potential differences in test-taking strategies or societal expectations and 
  prompts further research into the factors shaping gender-based academic outcomes."),
+ h3("Summary"),
  p("In essence, our findings shed light on the interplay between demographic variables and SAT performance, emphasizing the need for a comprehensive 
    understanding of the diverse influences at play. By acknowledging these underlying factors, educators and policymakers can strive towards more equitable 
    assessment practices and working towards inclusive learning environments to strive for academic success for all students. ")
