@@ -1,0 +1,12 @@
+name: The-SAT-Debate
+title: The-SAT-Debate
+username: jhngo
+account: jhngo
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 11413062
+bundleId: 8336827
+url: https://jhngo.shinyapps.io/The-SAT-Debate/
+version: 1
+asMultiple: FALSE
+asStatic: FALSE

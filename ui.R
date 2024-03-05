@@ -5,6 +5,8 @@ library(tidyr)
 library(shiny)
 install.packages("shinythemes")
 library(shinythemes)
+install.packages('rsconnect')
+library(rsconnect)
 sat_df <- read.csv("school_scores_and_lang_df.csv")
 
 
