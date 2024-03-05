@@ -1,10 +1,12 @@
 library(ggplot2)
 library(plotly)
 library(bslib)
-
+library(shiny)
+library(shinythemes)
 sat_df <- read.csv("school_scores_and_lang_df.csv")
 
 ## OVERVIEW TAB INFO
+
 
 overview_tab <- tabPanel("Introduction",
      h1("The SAT Debate"),
@@ -153,7 +155,7 @@ viz_3_main_panel <- mainPanel(
   
 )
 
-viz_3_tab <- tabPanel("How Does SAT Score Vary by Year for Female and Male",
+viz_3_tab <- tabPanel("Gender",
                       sidebarLayout(
                         viz_3_sidebar,
                         viz_3_main_panel
@@ -173,6 +175,7 @@ conclusion_tab <- tabPanel("Conclusion Tab Title",
 
 
 ui <- navbarPage("Example Project Title",
+  theme = shinytheme("cerulean"),
   overview_tab,
   viz_1_tab,
   viz_2_tab,
