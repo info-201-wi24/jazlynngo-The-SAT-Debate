@@ -122,11 +122,11 @@ viz_3_sidebar <- sidebarPanel(
       selectInput("scoreTypeFemale", "Select Female SAT Score Type:", 
                   choices = c("Math" = "Gender.Female.Math", 
                               "Verbal" = "Gender.Female.Verbal", 
-                              "Total" = "Gender.Female.Test.takers")),
+                              "Total Test Takers" = "Gender.Female.Test.takers")),
       selectInput("scoreTypeMale", "Select Male SAT Score Type:", 
                   choices = c("Math" = "Gender.Male.Math", 
                               "Verbal" = "Gender.Male.Verbal", 
-                              "Total" = "Gender.Male.Test.takers")),
+                              "Total Test Takers" = "Gender.Male.Test.takers")),
       selectInput("selectedState", "Select State:",
                   choices = unique(sat_df$State.Name), multiple = TRUE)
     )
@@ -145,13 +145,10 @@ viz_3_main_panel <- mainPanel(
     regions in the United States. Additionally, users can filter for math, verbal (reading and writing), or total SAT scores
     to visualize how gender performance differences vary across specific sections of the exam."),
   h1("Analysis:"),
-    p("The information demonstrates that males tend to perform better on all sections than females across the United States. 
-    Most states have an overall decline in score on the math section. Only a few states, some including Arkansas, 
-    Michigan Colorado, Wyoming, and Illinois have increased in the math section. In the verbal section, only some states, 
+    p("The information demonstrates that males tend to perform better on all sections than females across the United States. Most states have an overall decline in score on the math section. Only a few states, some including Arkansas, Michigan Colorado, Wyoming, and Illinois have increased in the math section. In the verbal section, only some states, 
     similar to the math section, have increased including Colorado, Michigan, and Wyoming. For all of the states, men performed 
-    higher than females in all sections, with the gap being slightly larger for math over verbal. 
-    Finally, Indiana has not significantly changed in the math or verbal section, besides a sudden peak in 2010. 
-    Overall, these data gives more insight, on how gender bias is present in SAT performance.")
+    higher than females in all sections, with the gap being slightly larger for math over verbal. Interestingly, the majority of states
+    had more female test takers then male. Finally, Indiana has almost remained constant in the math or verbal section, besides a sudden peak in 2010. Ironically, they had fewer test takers then. Overall, these data gives more insight, on how gender bias is present in SAT performance.")
 
   
 )
