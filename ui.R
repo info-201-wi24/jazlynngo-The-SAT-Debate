@@ -57,7 +57,7 @@ overview_tab <- tabPanel("Introduction",
      p("Are there trends between median household income and average SAT score?"),
      p("Do states with more English language speakers have higher average SAT scores?"),
      p("How does gender and SAT score vary by state?"),
-     h3("Data usage"),
+     h3("Data usage:"),
      p("Our first data source is a dataset consisting of SAT scores from across the country. The dataset holds testing numbers across
        all categories of the SAT test as well as average student GPA through various subjects. The data was generated
        from the college board students who took the exam and also participated in the survey. It also holds data
@@ -83,7 +83,7 @@ overview_tab <- tabPanel("Introduction",
 ## VIZ 1 TAB INFO
 
 viz_1_sidebar <- sidebarPanel(
-  h2("Select SAT Category"),
+  h1("Select SAT Category"),
   selectInput("scoreType", "Select SAT Score Type:", 
               choices = c("Verbal" = "Total.Verbal",
                           "Math" = "Total.Math"))
@@ -108,7 +108,7 @@ viz_1_main_panel <- mainPanel(
     verbal SAT section"),
   h2("SAT Scores vs Extra Language Speaker Percent"),
   plotlyOutput(outputId = "scoreVsEnglishPlot"),
-  h1("Analysis"),
+  h1("Analysis:"),
   p("We can see very high verbal SAT scores on the lower spectrum of extra language
     speakers, with the highest scores peaking at 600 with an extra language speaker percent of 5%. 
     In this range of the spectrum, we see a high concentration of test scores 
@@ -140,16 +140,16 @@ viz_2_sidebar <- sidebarPanel(
 ))
 
 viz_2_main_panel <- mainPanel(
-  h2("Impact of Wealth on SAT Scores"),
+  h1("Impact of Wealth on SAT Scores"),
   plotlyOutput(outputId = "scoreVsFamilyIncomePlot"),
   p("NOTE: 100k+ range should be at the end of the x-axis of plot."),
-  h1("Purpose"),
+  h1("Purpose:"),
   p("The purpose of this wealth plot is to illustrate the relationship between SAT scores 
     and family income ranges, aiming to discern whether the SAT truly assesses a student's 
     readiness for college or if it reflects economic advantages. We opted for a scatter plot to present 
     this data due to its effectiveness in depicting the correlation between two continuous variables: 
     SAT scores and family income ranges."),
-  h1("Analysis"),
+  h1("Analysis:"),
   p("Within our data, we can see that as the family income range of students decreases, so does their SAT score.
   This is an important correlation as income could be a factor in how well a student scores on the SAT. 
   This could give some insight and consideration into universities for them to decide if the SAT is a good measure of a student or their wealth. 
@@ -166,7 +166,7 @@ viz_2_tab <- tabPanel("Wealth",
 
 ## VIZ 3 TAB INFO
 viz_3_sidebar <- sidebarPanel(
-      h2("Select SAT score by Section"),
+      h1("Select SAT score by Section"),
       selectInput("scoreTypeFemale", "Select Female SAT Score Type:", 
                   choices = c("Math" = "Gender.Female.Math", 
                               "Verbal" = "Gender.Female.Verbal", 
