@@ -1,11 +1,12 @@
 library(ggplot2)
 library(plotly)
 library(bslib)
-<<<<<<< HEAD
+library(tidyr)
 library(shiny)
+install.packages("shinythemes")
 library(shinythemes)
 sat_df <- read.csv("school_scores_and_lang_df.csv")
-=======
+
 
 # more data wrangling for median household income
 sat_family_income_verbal_df <- sat_df %>%
@@ -35,7 +36,6 @@ sat_family_income_math_df <- sat_df %>%
   select(-Family.Income.Math, -Sat.Math.Score)
 
 sat_family_income_df <- rbind(sat_family_income_verbal_df, sat_family_income_math_df)
->>>>>>> c0441c0 (viz 2 finally done)
 
 ## OVERVIEW TAB INFO
 
@@ -232,12 +232,10 @@ conclusion_tab <- tabPanel("Conclusion",
 
 
 
-<<<<<<< HEAD
+
 ui <- navbarPage("The SAT Debate",
-=======
-ui <- navbarPage("Example Project Title",
   theme = shinytheme("cerulean"),
->>>>>>> d7b58ea3b4aa7ed1c348f3942368032c6456da36
+
   overview_tab,
   viz_1_tab,
   viz_2_tab,
