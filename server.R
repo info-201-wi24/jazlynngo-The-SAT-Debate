@@ -17,7 +17,7 @@ server <- function(input, output){
     score_type <- input$scoreType
     p <- ggplot(sat_df, aes_string(x = "English.Speaker", y = score_type)) +
       geom_point() +
-      labs(x = "Proportion of English Speakers", y = score_type)
+      labs(x = "Proportion who speak an extra language", y = score_type)
     
     ggplotly(p)
   })
