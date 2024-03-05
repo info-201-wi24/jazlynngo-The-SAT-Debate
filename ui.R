@@ -124,7 +124,7 @@ viz_1_main_panel <- mainPanel(
     towards extra language speakers or that extra language speaker percent is correlated with worse test scores.")
 )
 
-viz_1_tab <- tabPanel("How does percentage of extra language speakers affect SAT scores?",
+viz_1_tab <- tabPanel("Extra Language Speakers",
   sidebarLayout(
     viz_1_sidebar,
     viz_1_main_panel
@@ -144,17 +144,16 @@ viz_2_main_panel <- mainPanel(
   plotlyOutput(outputId = "scoreVsFamilyIncomePlot"),
   p("NOTE: 100k+ range should be at the end of the x-axis of plot."),
   h1("Purpose"),
-  p("The purpose of this wealth plot is to show how SAT scores vary within 
-     different family income ranges and to see if the SAT test is really about 
-     a student's readiness for college or about wealth. We chose a scatter plot to
-     represent this data because it effectively visualizes the relationship between
-     the two continuous variables of SAT score and family income ranges."),
+  p("The purpose of this wealth plot is to illustrate the relationship between SAT scores 
+    and family income ranges, aiming to discern whether the SAT truly assesses a student's 
+    readiness for college or if it reflects economic advantages. We opted for a scatter plot to present 
+    this data due to its effectiveness in depicting the correlation between two continuous variables: 
+    SAT scores and family income ranges."),
   h1("Analysis"),
-  p("In our data, we can see that the lower the student's family income range is, 
-  the lower their SAT Score is. This is an important to note as income could be a factor
-  in how well a student scores on the SAT. This could give some insight and consideration
-  into universities for them to decide if the SAT is a good measure of a student or not. This
-  exposes the socioeconomic bias of the SAT, equity in admissions, aiming towards a more hollistic
+  p("Within our data, we can see that as the family income range of students decreases, so does their SAT score.
+  This is an important correlation as income could be a factor in how well a student scores on the SAT. 
+  This could give some insight and consideration into universities for them to decide if the SAT is a good measure of a student or their wealth. 
+  This exposes the socioeconomic bias of the SAT and equity in admissions. This allows universities to consider a more hollistic
   review process, and giving more support for underserved students.")
 )
 
